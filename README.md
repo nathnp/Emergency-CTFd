@@ -10,4 +10,10 @@ For when you need an emergency instance of CTFd.
 To use, just paste this line into your terminal.
 `curl https://ectf.nthp.me | bash`
 
+After you run the script, you can stop and restart CFTd using the following commands.
+
+To stop: `./CFTdStop.sh`
+
+To Restart `./CFTdStart.sh`
+
 This has been tested on a Debian 11 VM in Linode. With 1GB of ram, and one CPU.
