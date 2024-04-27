@@ -1,4 +1,5 @@
 #!/bin/bash
+#GitHub: https://github.com/nathnp/Emergency-CTFd
 
 sudo apt update
 
@@ -10,8 +11,10 @@ cd CTFd
 
 sudo docker-compose up -d
 
+public_ip=$(curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g')
+
 echo ""
 echo "------------------------------"
 echo "You Emergency CFTd is availibe"
-echo "at your VM's pubic IP"
+echo "at http://$pubic_ip"
 echo "------------------------------"
