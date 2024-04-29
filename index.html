@@ -13,9 +13,11 @@ sudo docker-compose up -d
 
 cd ~
 
-echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" > CTFdStop.sh
+echo "#!/bin/bash" >> CTFdStop.sh
+echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStop.sh
 
-echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" > CTFdStart.sh
+echo "#!/bin/bash" >> CTFdStart.sh
+echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStart.sh
 
 chmod +x CTFdStop.sh
 chmod +x CTFdStart.sh
