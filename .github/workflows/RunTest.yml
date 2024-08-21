@@ -10,6 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Prep Test
-        run: mv ectfd.sh .. && cd .. && ls -R
+        run: mv ectfd.sh .. && ls -R
       - name: Test Script
         run: ./ectfd.sh
