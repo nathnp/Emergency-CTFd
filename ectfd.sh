@@ -5,11 +5,9 @@ sudo apt update
 
 sudo apt install -y git docker.io docker-compose
 
-git clone https://github.com/CTFd/CTFd.git
-
 cd CTFd
 
-sudo docker-compose up -d
+sudo docker run -p 8000:8000 -it ctfd/ctfd
 
 cd ~
 
