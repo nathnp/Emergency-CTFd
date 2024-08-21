@@ -12,4 +12,4 @@ jobs:
       - name: Prep Test
         run: mv ectfd.sh .. && cd .. && sudo chmod +x ectfd.sh
       - name: Test Script
-        run: ./ectfd.sh
+        run: pwd && ./ectfd.sh
