@@ -9,12 +9,14 @@
 
 # Function to install packages for Debian-based systems
 install_debian() {
+    distro=debian
     sudo apt-get update
     sudo apt-get install -y docker.io docker-compose git
 }
 
 # Function to install packages for Fedora-based systems
 install_fedora() {
+    distro=fedora
     sudo dnf install -y docker docker-compose git
     sudo systemctl start docker
     sudo systemctl enable docker
@@ -22,6 +24,7 @@ install_fedora() {
 
 # Function to install packages for openSUSE-based systems
 install_opensuse() {
+    distro=suse
     sudo zypper refresh
     sudo zypper install -y docker docker-compose git
     sudo systemctl start docker
@@ -56,24 +59,23 @@ cd ~
 
 public_ip=$(curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g')
 
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    if [ "$ID" == "opensuse-leap" ] || [ "$ID" == "opensuse-tumbleweed" ]; then
-        echo "#!/bin/bash" >> CTFdStop.sh
-        echo "sudo docker container stop ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStop.sh
+if [ $distro == "suse" ]; then
 
-        echo "#!/bin/bash" >> CTFdStart.sh
-        echo "sudo docker container start ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStart.sh
-        echo "echo 'http://$public_ip'" >> CTFdStart.sh
-    fi
-    else
+    echo "#!/bin/bash" >> CTFdStop.sh
+    echo "sudo docker container stop ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStop.sh
 
-        echo "#!/bin/bash" >> CTFdStop.sh
-        echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStop.sh
+    echo "#!/bin/bash" >> CTFdStart.sh
+    echo "sudo docker container start ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStart.sh
+    echo "echo 'http://$public_ip'" >> CTFdStart.sh
 
-        echo "#!/bin/bash" >> CTFdStart.sh
-        echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStart.sh
-        echo "echo 'http://$public_ip'" >> CTFdStart.sh
+else
+
+    echo "#!/bin/bash" >> CTFdStop.sh
+    echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStop.sh
+
+    echo "#!/bin/bash" >> CTFdStart.sh
+    echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStart.sh
+    echo "echo 'http://$public_ip'" >> CTFdStart.sh
 fi
 
 chmod +x CTFdStop.sh
