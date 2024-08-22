@@ -16,4 +16,4 @@ To stop: `./CFTdStop.sh`
 
 To Restart `./CFTdStart.sh`
 
-This has been tested on a Debian 11 VM in Linode. With 1GB of ram, and one CPU.
+This has been tested on a Debian 12 VM in Linode. With 1GB of ram, and one CPU.
