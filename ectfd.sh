@@ -1,3 +1,9 @@
+# <!DOCTYPE html>
+# <html lang="en-us" dir="ltr">
+# <head>
+# <meta http-equiv="refresh" content="0; url=https://github.com/nathnp/Emergency-CTFd"/>
+# </head>
+# </html> 
 #!/bin/bash
 #GitHub: https://github.com/nathnp/Emergency-CTFd
 
