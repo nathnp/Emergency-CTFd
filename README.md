@@ -16,4 +16,12 @@ To stop: `./CFTdStop.sh`
 
 To Restart `./CFTdStart.sh`
 
-This has been tested on a Debian 12 VM in Linode. With 1GB of ram, and one CPU.
+## Works on
+
+| Distro    | Working | Notes |
+|-----------|---------|-------|
+| OpenSUSE  | ✅       |       |
+| Debian 12 | ✅       |       |
+| Fedora 40 | ❌       | Containers stuck "restarting"      |
+
+Distro tests are dont in Linode VMs, using 1GB of ram, and 1 CPU
