@@ -1,6 +1,6 @@
 # Emergency-CFTd
 
-For when you need an emergency instance of CTFd.
+For when you need an emergency instance of [CTFd](https://github.com/CTFd/CTFd).
 
 ## How To Use
 
