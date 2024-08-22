@@ -48,14 +48,27 @@ sudo docker-compose up -d
 
 cd ~
 
-echo "#!/bin/bash" >> CTFdStop.sh
-echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStop.sh
-
 public_ip=$(curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z/<> :]//g')
 
-echo "#!/bin/bash" >> CTFdStart.sh
-echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStart.sh
-echo "echo 'http://$public_ip'" >> CTFdStart.sh
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" == "opensuse-leap" ] || [ "$ID" == "opensuse-tumbleweed" ]; then
+        echo "#!/bin/bash" >> CTFdStop.sh
+        echo "sudo docker container stop ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStop.sh
+
+        echo "#!/bin/bash" >> CTFdStart.sh
+        echo "sudo docker container start ctfd-db-1 ctfd-cache-1 ctfd-ctfd-1 ctfd-nginx-1" >> CTFdStart.sh
+        echo "echo 'http://$public_ip'" >> CTFdStart.sh
+    fi
+    else
+
+        echo "#!/bin/bash" >> CTFdStop.sh
+        echo "sudo docker container stop ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStop.sh
+
+        echo "#!/bin/bash" >> CTFdStart.sh
+        echo "sudo docker container start ctfd_db_1 ctfd_cache_1 ctfd_ctfd_1 ctfd_nginx_1" >> CTFdStart.sh
+        echo "echo 'http://$public_ip'" >> CTFdStart.sh
+fi
 
 chmod +x CTFdStop.sh
 chmod +x CTFdStart.sh
