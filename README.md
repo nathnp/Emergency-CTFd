@@ -23,3 +23,5 @@ To Restart `./CFTdStart.sh`
 | OpenSUSE  | ✅       |       |
 | Debian 12 | ✅       |       |
 | Fedora 40 | ❌       | Containers stuck "restarting"      |
+
+Distro tests are dont in Linode VMs, using 1GB of ram, and 1 CPU
